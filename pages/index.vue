@@ -15,15 +15,9 @@
         component: {
             PostList
         },
-        data() {
+        asyncData() {
             return {
-                loadedPosts: []
-            }
-        },
-        created() {
-            setTimeout(() => {
-                this.loadedPosts = [
-                    {
+                loadedPosts: [{
                         id: '1',
                         title: 'first Post',
                         previewText: 'this is my first post',
@@ -42,7 +36,16 @@
                         thumbnail: 'https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
                     }
                 ]
-            }, 1500)
+            }
+
+        },
+        // data() {
+        //     return {
+        //         loadedPosts: []
+        //     }
+        // },
+        created() {
+
         }
     }
 </script>
