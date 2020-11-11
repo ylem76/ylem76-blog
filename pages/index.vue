@@ -16,9 +16,10 @@
             PostList
         },
         asyncData(context, callback) {
+            console.log(context);
             setTimeout(() => { // FIXME 타임아웃이 안되는걸? 왜 그런지 모름?
                 callback(null, {
-                    loadedPosts: [{
+                    loadedPosts: [{ 
                             id: '1',
                             title: 'first Post',
                             previewText: 'this is my first post',
@@ -46,6 +47,7 @@
         //     }
         // },
         created() {
+
 
         }
     }
