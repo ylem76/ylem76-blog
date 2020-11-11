@@ -1,14 +1,7 @@
 <template>
     <section class="post-list">
-        <PostPreview id="1" :is-admin="isAdmin"
-            thumbnail="https://images.pexels.com/photos/5054213/pexels-photo-5054213.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            title="first-title" previewText="This is my first post!" />
-        <PostPreview id="2" :is-admin="isAdmin" title="second-title"
-            thumbnail="https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            previewText="This is my second post!" />
-        <PostPreview id="3" :is-admin="isAdmin" title="third-title"
-            thumbnail="https://images.pexels.com/photos/4050318/pexels-photo-4050318.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            previewText="This is my third post!" />
+        <PostPreview v-for="post in posts" :key="post.id" :id="post.id" :is-admin="isAdmin" :thumbnail="post.thumbnail"
+            :title="post.title" :previewText="post.previewText" />
     </section>
 </template>
 <script>
@@ -24,8 +17,13 @@
             isAdmin: {
                 type: Boolean,
                 default: false
+            },
+            posts: {
+                type: Array,
+                required: true
             }
-        }
+        },
+
     }
 </script>
 <style scoped>
