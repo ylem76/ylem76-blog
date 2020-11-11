@@ -1,19 +1,32 @@
 <template>
     <div class="admin-page">
         <section class="new-post">
-            <button>새 글쓰기</button>
+            <AppButton @click="$router.push('/admin/new-post')">새 글쓰기</AppButton>
         </section>
         <section class="existing-posts">
             <h1>현재 블로그 글 목록</h1>
-            <PostList />
+            <!-- isAdmin 변수 true로 -->
+            <PostList isAdmin />
         </section>
     </div>
 </template>
 <script>
 import PostList from '@/components/Posts/PostList'
+import AppButton from '@/components/UI/AppButton'
+
 export default {
+    layout:'admin',
     components : {
-        PostList
+        PostList,
+        AppButton
+    },
+    props: {
+        //여기다 props추가하니까 에러 안나네 됴잉
+        //다시 삭제하니까 또 괜찮네 떼잉
+        // isAdmin: {
+        //         type: Boolean,
+        //         default: false
+        //     }
     }
     
 }

@@ -1,21 +1,22 @@
 <template>
-    
+
     <div class="home-page">
         <section class="intro">
             <h1>웰컴 투 마이 블로그</h1>
         </section>
-        <PostList />
+        <PostList posts="" />
     </div>
 </template>
 
 <script>
     import PostList from '@/components/Posts/PostList'
 
-export default {
-    component: {
-        PostList
+    export default {
+        component: {
+            PostList
+        }
     }
-}
+    
 </script>
 
 <style scoped>
@@ -24,7 +25,7 @@ export default {
         position: relative;
         padding: 30px;
         box-sizing: border-box;
-        background-image:url('~assets/images/top_bg.jpg');
+        background-image: url('~assets/images/top_bg.jpg');
         background-position: center;
         background-size: cover;
     }
