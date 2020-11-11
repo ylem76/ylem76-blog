@@ -16,7 +16,7 @@
             PostList
         },
         asyncData(context, callback) {
-            setTimeout(() => {
+            setTimeout(() => { // FIXME 타임아웃이 안되는걸? 왜 그런지 모름?
                 callback(null, {
                     loadedPosts: [{
                             id: '1',
@@ -38,7 +38,7 @@
                         }
                     ]
                 }); 
-            }, 1500);
+            }, 1000);
         },
         // data() {
         //     return {
