@@ -4,13 +4,20 @@
             <h1 class="post-title">{{ loadedPost.title }}</h1>
             <div class="post-details">
                 <div class="post-detail">
-                    {{ loadedPost.title }}
+                    미리보기 텍스트 : 
+                    {{ loadedPost.previewText }}
                 </div>
                 <div class="post-detail">
+                    글쓴이 : 
                     {{ loadedPost.author }}
+                </div>
+                <div class="post-detail">
+                    수정날짜 : 
+                    {{ loadedPost.updatedDate }}
                 </div>
             </div>
             <div class="post-content">
+                내용 : 
                 {{ loadedPost.content }}
             </div>
         </section>
@@ -22,21 +29,17 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
-        asyncData(context, callback) {
-            setTimeout(() => {
-                callback(null, {
-                    loadedPost: {
-                        id: '1',
-                        title: 'first Post',
-                        previewText: 'this is my first post',
-                        author: 'i my me mine',
-                        updatedDate: new Date(),
-                        content: '이것은 본문입니다.',
-                        thumbnail: 'https://images.pexels.com/photos/5054213/pexels-photo-5054213.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        asyncData(context) {
+            return axios.get('https://ylem76-blog.firebaseio.com/posts/' + context.params.id + '.json')
+                .then(res => {
+                    return {
+                        loadedPost: res.data
                     }
-                });
-            }, 50);
+                })
+                .catch(e => context.error(e))
 
         }
     }
