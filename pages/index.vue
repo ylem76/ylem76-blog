@@ -15,42 +15,12 @@
         component: {
             PostList
         },
-        asyncData(context, callback) {
-            console.log(context);
-            setTimeout(() => { // FIXME 타임아웃이 안되는걸? 왜 그런지 모름?
-                callback(null, {
-                    loadedPosts: [{ 
-                            id: '1',
-                            title: 'first Post',
-                            previewText: 'this is my first post',
-                            thumbnail: 'https://images.pexels.com/photos/5054213/pexels-photo-5054213.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-                        },
-                        {
-                            id: '2',
-                            title: 'second Post',
-                            previewText: 'this is my 2 post',
-                            thumbnail: 'https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-                        },
-                        {
-                            id: '3',
-                            title: 'second Post',
-                            previewText: 'this is my 3 post',
-                            thumbnail: 'https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-                        }
-                    ]
-                }); 
-            }, 1000);
-        },
-        // data() {
-        //     return {
-        //         loadedPosts: []
-        //     }
-        // },
-        created() {
-
-
+        computed: {
+            loadedPosts () {
+                return this.$store.getters.loadedPosts
+            }
         }
-    }
+    };
 </script>
 
 <style scoped>
