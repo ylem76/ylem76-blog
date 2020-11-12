@@ -10,7 +10,7 @@
         component: {
             PostList
         },
-        asyncData(context) {
+        fetch(context) { //fetch : nuxt의 메소드로 asyncData와 비슷하게 동작한다.
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     resolve({
@@ -38,16 +38,21 @@
                 // reject(new Error())
             })
             .then(data => {
-                return data
+                context.store.commit('setPosts', data.loadedPosts)
             })
             .catch(e => {
                 context.error(e);
             });
         },
+        computed: {
+            loadedPosts() { //데이터 변경됐을 때 loadedPosts() 실행
+                return this.$store.getters.loadedPosts
+            }
+        },
         created() {
             this.$store.dispatch('setPosts', this.loadedPosts)
             //vuex로 저장한 데이터 콘솔로 확인하기
-            console.log(this.$store.getters.loadedPosts)
+            //console.log(this.$store.getters.loadedPosts)
         }
     };
 </script>
