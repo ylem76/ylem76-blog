@@ -11,8 +11,20 @@
   "dependencies": {
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "firebase": "^8.0.1",
     "nuxt": "^2.14.6",
     "vuex": "^3.5.1"
   },
-  "devDependencies": {}
+  "description": "## Build Setup",
+  "main": "nuxt.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ylem76/ylem76-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ylem76/ylem76-blog/issues"
+  },
+  "homepage": "https://github.com/ylem76/ylem76-blog#readme"
 }
