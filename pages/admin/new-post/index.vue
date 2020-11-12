@@ -1,12 +1,13 @@
 <template>
     <div class="admin-new-post-page">
         <section class="new-post-form">
-            <AdminPostForm />
+            <AdminPostForm @submit="onSubmitted"/>
         </section>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
     //컴포넌트 임포트 없어도 동작 잘하는 부분 왜인지는 모름.
     import AdminPostForm from '@/components/Admin/AdminPostForm'
 
@@ -14,6 +15,13 @@
         layout:'admin',
         components: {
             AdminPostForm
+        },
+        methods: {
+            onSubmitted(postData) {
+                axios.post('https://ylem76-blog.firebaseio.com/posts.json',postData)
+                    .then(result => console.log(result))
+                    .catch(e => console.log(e))
+            }
         }
     }
 </script>
