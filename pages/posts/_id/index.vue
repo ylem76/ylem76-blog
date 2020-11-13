@@ -41,6 +41,11 @@
                 })
                 .catch(e => context.error(e))
 
+        },
+        head: {
+            //페이지 단위에서 수정 가능
+            title:'A single post',
+            titleTemplate: '넉스트 - %s'
         }
     }
 </script>

@@ -1,4 +1,6 @@
 export default {
+    //모드 확인
+    // mode: 'spa',
     // Global page headers (https://go.nuxtjs.dev/config-head)
     head: {
         title: 'ylem76-blog',
@@ -26,9 +28,24 @@ export default {
             }
         ]
     },
+    // loading bar
+    loading: { color: 'red', height:'4px', duration: 5000 },
+    //spa일 때 로딩 아이콘(??) 너무 빨라서 확인은 안됨
+    // loadingIndicator : { 
+    //     name : 'circle', color:'#dd11dd'
+    //  },
+    // 로딩바 사용하지 않음
+    //loading:false, 
 
     // Global CSS (https://go.nuxtjs.dev/config-css)
-    css: [],
+    css: [
+        '~assets/styles/main.css'
+    ],
+    //transition
+    transition: {
+        name:'fade',
+        mode:'out-in'
+    },
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [],
@@ -43,5 +60,8 @@ export default {
     modules: [],
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
-    build: {}
+    build: {},
+    env: {
+        baseUrl: process.env.BASE_URL || 'https://ylem76-blog.firebaseio.com'
+    }
 }
