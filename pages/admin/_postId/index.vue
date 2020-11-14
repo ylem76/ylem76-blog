@@ -8,7 +8,7 @@
 <script>
     //이거는 또 빠지면 에러남 왜그런지 모름
     import AdminPostForm from '@/components/Admin/AdminPostForm'
-    // import axios from 'axios';
+    import axios from 'axios';
 
     export default {
         layout: 'admin',
@@ -16,7 +16,7 @@
             AdminPostForm
         },
         asyncData(context) {
-            return this.$axios.$get('/posts/' + context.params.postId + '.json')
+            return axios.get('https://ylem76-blog.firebaseio.com/posts/' + context.params.postId + '.json')
                 .then(res => {
                     return {
                         loadedPost: {

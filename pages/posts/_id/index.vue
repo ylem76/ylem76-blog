@@ -29,9 +29,11 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         asyncData(context) {
-            return this.$axios.$get('/posts/' + context.params.id + '.json')
+            return axios.get('https://ylem76-blog.firebaseio.com/posts/' + context.params.id + '.json')
                 .then(res => {
                     return {
                         loadedPost: res.data
