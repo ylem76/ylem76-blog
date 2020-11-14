@@ -73,5 +73,8 @@ export default {
     build: {},
     env: {
         baseUrl: process.env.BASE_URL || 'https://ylem76-blog.firebaseio.com'
+    },
+    router: {
+        middleware: 'log'
     }
 }
