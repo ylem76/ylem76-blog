@@ -12,13 +12,13 @@
 </template>
 <script>
     //컴포넌트 임포트 없어도 동작 잘하는 부분 왜인지는 모름.
-    import AppControlInput from '@/components/UI/AppControlInput'
-    import AppButton from '@/components/UI/AppButton'
+    //import AppControlInput from '@/components/UI/AppControlInput'
+    //import AppButton from '@/components/UI/AppButton'
 
     export default {
         components: {
-            AppControlInput,
-            AppButton
+            // AppControlInput,
+            // AppButton
         },
         props: {
             //editedPost 데이터를 다른 컴포넌트에서 사용할 수 있게?

@@ -11,14 +11,15 @@
     </div>
 </template>
 <script>
-    import PostList from '@/components/Posts/PostList'
-    import AppButton from '@/components/UI/AppButton'
+    //import PostList from '@/components/Posts/PostList'
+    //import AppButton from '@/components/UI/AppButton'
 
     export default {
         layout: 'admin',
         components: {
-            PostList,
-            AppButton
+            // PostList,
+            // AppButton
+            // 플러그인에 추가했으므로 이렇게 컴포넌트 프로퍼티에 선언할 필요도 없음.
         },
         computed: {
             loadedPosts () {

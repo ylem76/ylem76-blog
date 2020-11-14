@@ -48,7 +48,12 @@ export default {
     },
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-    plugins: [],
+    plugins: [
+        //plugins/core-component.js 파일에서 설정해준 내용을 여기에 적용시켜준다.
+        //쓰는 방법은 강의랑 다른 것 같다.
+        { src: '~plugins/core-component.js' },
+        { src: '~plugins/data-filter.js' }
+    ],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
