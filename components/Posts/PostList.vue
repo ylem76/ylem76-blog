@@ -1,7 +1,7 @@
 <template>
     <section class="post-list">
         <PostPreview v-for="post in posts" :key="post.id" :id="post.id" :thumbnail="post.thumbnail"
-            :title="post.title" :previewText="post.previewText" />
+            :title="post.title" :previewText="post.previewText" :is-admin="isAdmin" />
     </section>
 </template>
 <script>
