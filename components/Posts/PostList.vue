@@ -1,6 +1,6 @@
 <template>
     <section class="post-list">
-        <PostPreview v-for="post in posts" :key="post.id" :id="post.id" :is-admin="isAdmin" :thumbnail="post.thumbnail"
+        <PostPreview v-for="post in posts" :key="post.id" :id="post.id" :thumbnail="post.thumbnail"
             :title="post.title" :previewText="post.previewText" />
     </section>
 </template>

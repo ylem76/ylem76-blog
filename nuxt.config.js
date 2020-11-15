@@ -29,7 +29,11 @@ export default {
         ]
     },
     // loading bar
-    loading: { color: 'red', height:'4px', duration: 5000 },
+    loading: {
+        color: 'red',
+        height: '4px',
+        duration: 5000
+    },
     //spa일 때 로딩 아이콘(??) 너무 빨라서 확인은 안됨
     // loadingIndicator : { 
     //     name : 'circle', color:'#dd11dd'
@@ -43,16 +47,20 @@ export default {
     ],
     //transition
     transition: {
-        name:'fade',
-        mode:'out-in'
+        name: 'fade',
+        mode: 'out-in'
     },
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [
         //plugins/core-component.js 파일에서 설정해준 내용을 여기에 적용시켜준다.
         //쓰는 방법은 강의랑 다른 것 같다.
-        { src: '~plugins/core-component.js' },
-        { src: '~plugins/data-filter.js' }
+        {
+            src: '~plugins/core-component.js'
+        },
+        {
+            src: '~plugins/data-filter.js'
+        }
     ],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -66,13 +74,15 @@ export default {
         '@nuxtjs/axios'
     ],
     axios: {
-
+        // 모듈 설정
+        baseURL: process.env.BASE_URL || 'https://ylem76-blog.firebaseio.com'
     },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {},
     env: {
-        baseUrl: process.env.BASE_URL || 'https://ylem76-blog.firebaseio.com'
+        baseUrl: process.env.BASE_URL || 'https://ylem76-blog.firebaseio.com',
+        APIKey: 'AIzaSyB6K49BW6JFqdyCRIaFHKGyauaJYohDdyk'
     },
     router: {
         middleware: 'log'
