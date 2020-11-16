@@ -93,6 +93,7 @@ const createStore = () => {
                         Cookie.set('expirationDate', new Date().getTime() + result.expiresIn * 1000);
 
                         vuexContext.dispatch('setLogoutTimer', result.expiresIn * 1000)
+                        console.log('쿠키 셋팅 성공');
                     })
                     .catch(e => console.error(e));
             },

@@ -41,8 +41,9 @@
                     password:this.password
                 })
                 .then(() => {
+                    alert('DB로 데이터 보내기 성공')
                     this.$router.push('/admin');
-                    alert('로그인성공')
+                    
                 })
 
 
