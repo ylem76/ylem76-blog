@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/ylem76/ylem76-blog/issues"
   },
-  "homepage": "https://github.com/ylem76/ylem76-blog#readme"
+  "homepage": "https://github.com/ylem76/ylem76-blog#readme",
+  "devDependencies": {
+    "js-cookie": "^2.2.1"
+  }
 }
