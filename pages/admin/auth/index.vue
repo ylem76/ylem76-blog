@@ -21,7 +21,7 @@
 
     export default {
         name: 'AdminAuthPage',
-        middleware: ['auth'],
+        //middleware: ['auth'],
         components: {
             // AppControlInput,
             // AppButton

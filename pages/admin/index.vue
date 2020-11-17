@@ -2,6 +2,7 @@
     <div class="admin-page">
         <section class="new-post">
             <AppButton @click="$router.push('/admin/new-post')">새 글쓰기</AppButton>
+            <AppButton @click="onLogout">로그아웃</AppButton>
         </section>
         <section class="existing-posts">
             <h1>현재 블로그 글 목록</h1>
@@ -25,6 +26,12 @@
         computed: {
             loadedPosts () {
                 return this.$store.getters.loadedPosts
+            }
+        },
+        methods: {
+            onLogout() {
+                this.$store.dispatch('logout');
+                this.$router.push('/admin/auth');
             }
         }
     };

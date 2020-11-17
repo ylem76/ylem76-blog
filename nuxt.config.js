@@ -1,3 +1,5 @@
+const bodyParser = require('body-parser')
+
 export default {
     //모드 확인
     // mode: 'spa',
@@ -50,6 +52,10 @@ export default {
         name: 'fade',
         mode: 'out-in'
     },
+    serverMiddleware: [
+        bodyParser.json(),
+        '~/api'
+    ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [

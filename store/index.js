@@ -87,51 +87,68 @@ const createStore = () => {
                         vuexContext.commit("setToken", result.idToken);
 
                         localStorage.setItem('token', result.idToken);
-                        localStorage.setItem('tokenExpiration', new Date().getTime() + result.expiresIn * 1000);
+                        localStorage.setItem('tokenExpiration', new Date().getTime() + Number.parseInt(result.expiresIn) * 1000);
 
-                        Cookie.set('jwt', result.idToken);
-                        Cookie.set('expirationDate', new Date().getTime() + result.expiresIn * 1000);
+                        // Cookie.set('jwt', result.idToken);
+                        // Cookie.set('expirationDate', new Date().getTime() + +result.expiresIn * 1000);
 
-                        vuexContext.dispatch('setLogoutTimer', result.expiresIn * 1000)
-                        console.log('쿠키 셋팅 성공');
+                        // vuexContext.dispatch('setLogoutTimer', result.expiresIn * 1000)
+                        //console.log('쿠키 셋팅 성공');
+
+                        //로그인 확인 하는 서버사이드 코드 삽입(~연습~)
+                        return this.$axios.$post('http://localhost:3000/api/track-data', {data:'Authenticated!'})
                     })
                     .catch(e => console.error(e));
             },
-            setLogoutTimer(vuexContext, duration) {
-                setTimeout(() => {
-                    vuexContext.commit('clearToken')
-                }, duration)
-            },
+            // 테스트용으로 제작한 코드 실제로 동작할 수 있도록 리팩토링
+            // setLogoutTimer(vuexContext, duration) {
+
+            //     setTimeout(() => {
+            //         vuexContext.commit('clearToken')
+            //     }, duration)
+            // },
             initAuth(vuexContext, req) {
                 let token;
                 let expirationDate;
 
-                if (req) {
-                    if(!req.headers.cookie) {
-                        return;
-                    }
-                    const jwtCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwt='));
-                    if(!jwtCookie) {
-                        return alert('쿠키 읽기 실패');
-                    }
-                    token = jwtCookie.split('=')[1];
-                    expirationDate = req.headers.cookie.split(';').find(c => c.trim().startWith('expirationDate='))
-                    .split('=')[1];
+                // if (req) {
+                //     if (!req.headers.cookie) {
+                //         return;
+                //     }
+                //     const jwtCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwt='));
+                //     if (!jwtCookie) {
+                //         return alert('쿠키 읽기 실패');
+                //     }
+                //     token = jwtCookie.split('=')[1];
+                //     expirationDate = req.headers.cookie.split(';').find(c => c.trim().startWith('expirationDate='))
+                //         .split('=')[1];
 
 
-                } else {
-                    token = localStorage.getItem('token');
-                    expirationDate = localStorage.getItem("tokenExpiration");
+                // } else {
+                //     token = localStorage.getItem('token');
+                //     expirationDate = localStorage.getItem("tokenExpiration");
+                // }
 
-                    if (new Date().getTime() > +expirationDate || !token) {
-                        return;
-                    }
+                token = localStorage.getItem('token');
+                expirationDate = localStorage.getItem("tokenExpiration");
+                console.log('토큰정보 : ' + token );
 
+                if (new Date().getTime() > +expirationDate || !token) {
+                    console.log('No token or invalid token');
+                    vuexContext.dispatch('logout');
+                    // vuexContext.commit('clearToken');
+                    return;
                 }
-
-                vuexContext.dispatch('setLogoutTimer', expirationDate - new Date().getTime());
+                //로그아웃 타이머 리팩토링
+                // vuexContext.dispatch('setLogoutTimer', expirationDate - new Date().getTime());
                 vuexContext.commit("setToken", token);
-
+            },
+            logout(vuexContext) {
+                vuexContext.commit('clearToken');
+                // Cookie.remove('jwt');
+                // Cookie.romove('expirationDate');
+                localStorage.removeItem('token');
+                localStorage.removeItem('tokenExpiration');
             }
         },
         getters: {
@@ -141,7 +158,7 @@ const createStore = () => {
             isAuthenticated(state) {
                 return state.token != null
             }
-        }
+        }        
     });
 };
 
