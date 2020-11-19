@@ -2,15 +2,9 @@
     <div class="admin-auth-page">
         <div class="auth-container">
             <form @submit.prevent="onSubmit">
-                <AppControlInput type="email" v-model="email"
-                    >E-Mail Address</AppControlInput
-                >
-                <AppControlInput type="password" v-model="password"
-                    >Password</AppControlInput
-                >
-                <AppButton type="submit">{{
-                    isLogin ? 'Login' : 'Sign Up'
-                }}</AppButton>
+                <AppControlInput type="email" v-model="email">E-Mail Address</AppControlInput>
+                <AppControlInput type="password" v-model="password">Password</AppControlInput>
+                <AppButton type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</AppButton>
                 <AppButton
                     type="button"
                     btn-style="inverted"
@@ -28,7 +22,7 @@
 //import AppControlInput from '@/components/UI/AppControlInput'
 //import AppButton from '@/components/UI/AppButton'
 
-import axios from 'axios';
+//import axios from 'axios';
 
 export default {
     name: 'AdminAuthPage',
