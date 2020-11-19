@@ -1,7 +1,9 @@
 <template>
     <div class="admin-page">
         <section class="new-post">
-            <AppButton @click="$router.push('/admin/new-post')">새 글쓰기</AppButton>
+            <AppButton @click="$router.push('/admin/new-post')"
+                >새 글쓰기</AppButton
+            >
             <AppButton @click="onLogout">로그아웃</AppButton>
         </section>
         <section class="existing-posts">
@@ -12,42 +14,42 @@
     </div>
 </template>
 <script>
-    //import PostList from '@/components/Posts/PostList'
-    //import AppButton from '@/components/UI/AppButton'
+//import PostList from '@/components/Posts/PostList'
+//import AppButton from '@/components/UI/AppButton'
 
-    export default {
-        layout: 'admin',
-        middleware: ['check-auth', 'auth'],
-        components: {
-            // PostList,
-            // AppButton
-            // 플러그인에 추가했으므로 이렇게 컴포넌트 프로퍼티에 선언할 필요도 없음.
+export default {
+    layout: 'admin',
+    middleware: ['check-auth', 'auth'],
+    components: {
+        // PostList,
+        // AppButton
+        // 플러그인에 추가했으므로 이렇게 컴포넌트 프로퍼티에 선언할 필요도 없음.
+    },
+    computed: {
+        loadedPosts() {
+            return this.$store.getters.loadedPosts;
         },
-        computed: {
-            loadedPosts () {
-                return this.$store.getters.loadedPosts
-            }
+    },
+    methods: {
+        onLogout() {
+            this.$store.dispatch('logout');
+            this.$router.push('/admin/auth');
         },
-        methods: {
-            onLogout() {
-                this.$store.dispatch('logout');
-                this.$router.push('/admin/auth');
-            }
-        }
-    };
+    },
+};
 </script>
 <style scoped>
-    .admin-page {
-        padding: 20px;
-    }
+.admin-page {
+    padding: 20px;
+}
 
-    .new-post {
-        text-align: center;
-        border-bottom: 2px solid #ccc;
-        padding-bottom: 10px;
-    }
+.new-post {
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+}
 
-    .existing-posts h1 {
-        text-align: center;
-    }
+.existing-posts h1 {
+    text-align: center;
+}
 </style>

@@ -2,10 +2,21 @@
     <div class="admin-auth-page">
         <div class="auth-container">
             <form @submit.prevent="onSubmit">
-                <AppControlInput type="email" v-model="email">E-Mail Address</AppControlInput>
-                <AppControlInput type="password" v-model="password">Password</AppControlInput>
-                <AppButton type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</AppButton>
-                <AppButton type="button" btn-style="inverted" style="margin-left: 10px" @click="isLogin = !isLogin">
+                <AppControlInput type="email" v-model="email"
+                    >E-Mail Address</AppControlInput
+                >
+                <AppControlInput type="password" v-model="password"
+                    >Password</AppControlInput
+                >
+                <AppButton type="submit">{{
+                    isLogin ? 'Login' : 'Sign Up'
+                }}</AppButton>
+                <AppButton
+                    type="button"
+                    btn-style="inverted"
+                    style="margin-left: 10px"
+                    @click="isLogin = !isLogin"
+                >
                     Switch to {{ isLogin ? 'Signup' : 'Login' }}
                 </AppButton>
             </form>
@@ -14,56 +25,54 @@
 </template>
 
 <script>
-    //import AppControlInput from '@/components/UI/AppControlInput'
-    //import AppButton from '@/components/UI/AppButton'
+//import AppControlInput from '@/components/UI/AppControlInput'
+//import AppButton from '@/components/UI/AppButton'
 
-    import axios from 'axios';
+import axios from 'axios';
 
-    export default {
-        name: 'AdminAuthPage',
-        //middleware: ['auth'],
-        components: {
-            // AppControlInput,
-            // AppButton
-        },
-        data() {
-            return {
-                isLogin: true,
-                email: '',
-                password: ''
-            }
-        },
-        methods: {
-            onSubmit() {
-                this.$store.dispatch('authenticateUser', {
-                    isLogin:this.isLogin,
-                    email:this.email,
-                    password:this.password
+export default {
+    name: 'AdminAuthPage',
+    //middleware: ['auth'],
+    components: {
+        // AppControlInput,
+        // AppButton
+    },
+    data() {
+        return {
+            isLogin: true,
+            email: '',
+            password: '',
+        };
+    },
+    methods: {
+        onSubmit() {
+            this.$store
+                .dispatch('authenticateUser', {
+                    isLogin: this.isLogin,
+                    email: this.email,
+                    password: this.password,
                 })
                 .then(() => {
-                    alert('DB로 데이터 보내기 성공')
+                    alert('DB로 데이터 보내기 성공');
                     this.$router.push('/admin');
-                    
-                })
-
-
-            }
-        }
-    }
+                });
+        },
+    },
+};
 </script>
 
 <style scoped>
-    .admin-auth-page {
-        padding: 20px;
-    }
+.admin-auth-page {
+    padding: 20px;
+}
 
-    .auth-container {
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 2px 2px #ccc;
-        width: 300px;
-        margin: auto;
-        padding: 10px;
-        box-sizing: border-box;
-    }
+.auth-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px #ccc;
+    width: 300px;
+    margin: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
 </style>
